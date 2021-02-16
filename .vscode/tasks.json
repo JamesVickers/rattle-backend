@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"type": "npm",
+		"script": "tsc",
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		},
+		"problemMatcher": [
+		  "$tsc"
+		],
+		"label": "Type check"
+	  },
+	  {
+		"type": "npm",
+		"script": "lint",
+		"problemMatcher": [
+		  "$eslint-compact"
+		],
+		"label": "Lint",
+	  }
+	]
+  }

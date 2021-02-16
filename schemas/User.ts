@@ -1,4 +1,4 @@
-const { keystone } = require("..");
+// const { keystone } = require("..");
 const { Text, Checkbox, Password, Relationship } = require("@keystonejs/fields");
 
 // keystone.createList('User', {
