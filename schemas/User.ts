@@ -1,7 +1,4 @@
-// const { keystone } = require("..");
 const { Text, Checkbox, Password } = require("@keystonejs/fields");
-
-// keystone.createList('User', {
 
 // Access control functions
 const userIsAdmin = ({ authentication: { item: user } }) =>
