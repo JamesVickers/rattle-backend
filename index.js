@@ -5,6 +5,7 @@ const { AdminUIApp } = require("@keystonejs/app-admin-ui");
 const { MongooseAdapter: Adapter } = require("@keystonejs/adapter-mongoose");
 const initialiseData = require("./initial-data");
 const User = require("./schemas/User.ts");
+const Product = require("./schemas/Product.ts");
 require("dotenv").config();
 
 const PROJECT_NAME = "rattle-backend";
@@ -16,6 +17,7 @@ const keystone = new Keystone({
 });
 
 keystone.createList("User", User);
+keystone.createList("Product", Product);
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
