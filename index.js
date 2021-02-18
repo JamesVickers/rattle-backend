@@ -11,13 +11,41 @@ require("dotenv").config();
 const PROJECT_NAME = "rattle-backend";
 const adapterConfig = { mongoUri: process.env.DATABASE_URL };
 
+const isAdmin = ({ authentication: { item: user } }) => {
+  // console.log(user);
+  return !!user && !!user.isAdmin;
+};
+
+const isLoggedIn = ({ authentication: { item: user } }) => {
+  // console.log(user);
+  return !!user;
+};
+
 const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
   onConnect: process.env.CREATE_TABLES !== "true" && initialiseData,
 });
 
-keystone.createList("User", UserSchema);
-keystone.createList("Post", PostSchema);
+// keystone.createList("User", UserSchema);
+keystone.createList("User", {
+  fields: UserSchema.fields,
+  access: {
+    read: true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
+  },
+});
+// keystone.createList("Post", PostSchema);
+keystone.createList("Post", {
+  fields: PostSchema.fields,
+  access: {
+    read: true,
+    create: isLoggedIn,
+    update: isLoggedIn,
+    delete: isLoggedIn,
+  },
+});
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
@@ -40,10 +68,7 @@ module.exports = {
       authStrategy,
       // Add roles in here later is required in app
       // Only admin users granted access to the Keystone dashboard here at the moment
-      isAccessAllowed: ({ authentication: { item: user } }) => {
-        // console.log(user);
-        return !!user && !!user.isAdmin;
-      },
+      isAccessAllowed: isAdmin,
     }),
   ],
 };

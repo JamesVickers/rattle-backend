@@ -40,6 +40,7 @@ const userFields = {
         update: access.userIsAdmin,
       },
     },
+    // Add roles in here later is required in app
   },
   // List-level access controls
   access: {
