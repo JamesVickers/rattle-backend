@@ -20,13 +20,17 @@ const userIsAdminOrOwner = (auth) => {
 
 const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner };
 
-module.exports = {
+const userFields = {
   fields: {
     name: { type: Text, isRequired: true },
     email: {
       type: Text,
       isRequired: true,
       isUnique: true,
+    },
+    password: {
+      type: Password,
+      isRequired: true,
     },
     isAdmin: {
       type: Checkbox,
@@ -36,11 +40,6 @@ module.exports = {
         update: access.userIsAdmin,
       },
     },
-    password: {
-      type: Password,
-      isRequired: true,
-    },
-    // Add roles in here later is required in app
   },
   // List-level access controls
   access: {
@@ -51,3 +50,5 @@ module.exports = {
     auth: true,
   },
 };
+
+module.exports = userFields;
