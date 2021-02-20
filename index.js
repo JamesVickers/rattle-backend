@@ -5,6 +5,7 @@ const { AdminUIApp } = require("@keystonejs/app-admin-ui");
 const { MongooseAdapter: Adapter } = require("@keystonejs/adapter-mongoose");
 const initialiseData = require("./initial-data");
 const UserSchema = require("./schemas/User.ts");
+const UserImageSchema = require("./schemas/UserImage.ts");
 const PostSchema = require("./schemas/Post.ts");
 require("dotenv").config();
 
@@ -36,7 +37,7 @@ keystone.createList("User", {
     delete: isAdmin,
   },
 });
-// keystone.createList("Post", PostSchema);
+keystone.createList("UserImage", UserImageSchema);
 keystone.createList("Post", {
   fields: PostSchema.fields,
   access: {
