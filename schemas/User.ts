@@ -2,7 +2,7 @@ const {
   Text,
   Checkbox,
   Password,
-  // Relationship,
+  Relationship,
 } = require("@keystonejs/fields");
 
 // Access control functions
@@ -55,14 +55,14 @@ const userFields = {
     delete: access.userIsAdmin,
     auth: true,
   },
-  // profileImage: {
-  //   type: Relationship,
-  //   ref: "UserImage.user",
-  //   displayMode: "Cards",
-  //   cardFields: ["image", "altText"],
-  //   inlineCreate: { fields: ["image", "altText"] },
-  //   inlineEdit: { fields: ["image", "altText"] },
-  // },
+  profileImage: {
+    type: Relationship,
+    ref: "UserImage",
+    // displayMode: "Cards",
+    // cardFields: ["image", "altText"],
+    // inlineCreate: { fields: ["image", "altText"] },
+    // inlineEdit: { fields: ["image", "altText"] },
+  },
 };
 
 module.exports = userFields;

@@ -1,9 +1,6 @@
 const { CloudinaryAdapter } = require("@keystonejs/file-adapters");
 const { CloudinaryImage } = require("@keystonejs/fields-cloudinary-image");
-const {
-  Text,
-  // Relationship
-} = require("@keystonejs/fields");
+const { Text, Relationship } = require("@keystonejs/fields");
 require("dotenv").config();
 
 const fileAdapter = new CloudinaryAdapter({
@@ -17,7 +14,7 @@ const userImageFields = {
   fields: {
     image: { type: CloudinaryImage, adapter: fileAdapter, label: "Source" },
     altText: { type: Text },
-    // user: { type: Relationship, ref: "User.profileImage" },
+    user: { type: Relationship, ref: "User" },
   },
 };
 
