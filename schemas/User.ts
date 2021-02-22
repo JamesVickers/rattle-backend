@@ -37,6 +37,14 @@ const userFields = {
       type: Password,
       isRequired: true,
     },
+    profileImage: {
+      type: Relationship,
+      ref: "UserImage",
+      // displayMode: "Cards",
+      // cardFields: ["image", "altText"],
+      // inlineCreate: { fields: ["image", "altText"] },
+      // inlineEdit: { fields: ["image", "altText"] },
+    },
     isAdmin: {
       type: Checkbox,
       // Field-level access controls
@@ -54,14 +62,6 @@ const userFields = {
     create: access.userIsAdmin,
     delete: access.userIsAdmin,
     auth: true,
-  },
-  profileImage: {
-    type: Relationship,
-    ref: "UserImage",
-    // displayMode: "Cards",
-    // cardFields: ["image", "altText"],
-    // inlineCreate: { fields: ["image", "altText"] },
-    // inlineEdit: { fields: ["image", "altText"] },
   },
 };
 
