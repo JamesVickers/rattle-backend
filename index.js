@@ -17,10 +17,10 @@ const isAdmin = ({ authentication: { item: user } }) => {
   return !!user && !!user.isAdmin;
 };
 
-const isLoggedIn = ({ authentication: { item: user } }) => {
-  // console.log(user);
-  return !!user;
-};
+// const isLoggedIn = ({ authentication: { item: user } }) => {
+//   // console.log(user);
+//   return !!user;
+// };
 
 const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
@@ -42,9 +42,12 @@ keystone.createList("Post", {
   fields: PostSchema.fields,
   access: {
     read: true,
-    create: isLoggedIn,
-    update: isLoggedIn,
-    delete: isLoggedIn,
+    create: true,
+    update: isAdmin,
+    delete: isAdmin,
+    // create: isLoggedIn,
+    // update: isLoggedIn,
+    // delete: isLoggedIn,
   },
 });
 
