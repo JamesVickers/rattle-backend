@@ -43,8 +43,8 @@ keystone.createList("Post", {
   access: {
     read: true,
     create: true,
-    update: isAdmin,
-    delete: isAdmin,
+    update: true,
+    delete: true,
     // create: isLoggedIn,
     // update: isLoggedIn,
     // delete: isLoggedIn,
