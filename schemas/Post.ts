@@ -8,8 +8,8 @@ const postFields = {
     },
     body: {
       type: Text,
-      isRequired: true,
       isMultiline: true,
+      isRequired: true,
     },
     status: {
       type: Select,
@@ -21,9 +21,9 @@ const postFields = {
     },
     author: {
       type: Relationship,
-      isRequired: true,
       ref: "User",
       many: false,
+      isRequired: true,
     },
   },
 };

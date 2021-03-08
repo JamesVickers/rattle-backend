@@ -5,33 +5,33 @@ const {
   Relationship,
 } = require("@keystonejs/fields");
 
-// Access control functions
-const userIsAdmin = ({ authentication: { item: user } }) =>
-  Boolean(user && user.isAdmin);
-const userOwnsItem = ({ authentication: { item: user } }) => {
-  if (!user) {
-    return false;
-  }
-  // Instead of a boolean, you can return a GraphQL query:
-  // https://www.keystonejs.com/api/access-control#graphqlwhere
-  return { id: user.id };
-};
+// // Access control functions
+// const userIsAdmin = ({ authentication: { item: user } }) =>
+//   Boolean(user && user.isAdmin);
+// const userOwnsItem = ({ authentication: { item: user } }) => {
+//   if (!user) {
+//     return false;
+//   }
+//   // Instead of a boolean, you can return a GraphQL query:
+//   // https://www.keystonejs.com/api/access-control#graphqlwhere
+//   return { id: user.id };
+// };
 
-const userIsAdminOrOwner = (auth) => {
-  const isAdmin = access.userIsAdmin(auth);
-  const isOwner = access.userOwnsItem(auth);
-  return isAdmin ? isAdmin : isOwner;
-};
+// const userIsAdminOrOwner = (auth) => {
+//   const isAdmin = access.userIsAdmin(auth);
+//   const isOwner = access.userOwnsItem(auth);
+//   return isAdmin ? isAdmin : isOwner;
+// };
 
-const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner };
+// const access = { userIsAdmin, userOwnsItem, userIsAdminOrOwner };
 
 const userFields = {
   fields: {
     name: { type: Text, isRequired: true },
     email: {
       type: Text,
-      isRequired: true,
       isUnique: true,
+      isRequired: true,
     },
     password: {
       type: Password,
@@ -47,21 +47,13 @@ const userFields = {
     },
     isAdmin: {
       type: Checkbox,
+      isRequired: true,
       // Field-level access controls
       // Here, we set more restrictive field access so a non-admin cannot make themselves admin.
-      access: {
-        update: access.userIsAdmin,
-      },
+      // access: {
+      //   update: access.userIsAdmin,
+      // },
     },
-    // Add roles in here later is required in app
-  },
-  // List-level access controls
-  access: {
-    read: access.userIsAdminOrOwner,
-    update: access.userIsAdminOrOwner,
-    create: access.userIsAdmin,
-    delete: access.userIsAdmin,
-    auth: true,
   },
 };
 

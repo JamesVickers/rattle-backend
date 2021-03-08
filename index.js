@@ -18,16 +18,16 @@ const isAdmin = ({ authentication: { item: user } }) => {
 };
 
 // const isLoggedIn = ({ authentication: { item: user } }) => {
-//   // console.log(user);
+//   console.log(user);
 //   return !!user;
 // };
 
 const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
+  cookieSecret: process.env.COOKIE_SECRET,
   onConnect: process.env.CREATE_TABLES !== "true" && initialiseData,
 });
 
-// keystone.createList("User", UserSchema);
 keystone.createList("User", {
   fields: UserSchema.fields,
   access: {
@@ -55,8 +55,8 @@ const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
   list: "User",
   config: {
-    protectIdentities: process.env.NODE_ENV === "production",
-    listKey: "User",
+    // protectIdentities: process.env.NODE_ENV === "production",
+    // listKey: "User",
     identityField: "email",
     secretField: "password",
   },
