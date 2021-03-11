@@ -57,7 +57,7 @@ keystone.createList("User", {
   // access level for field type in Keystone backend, not front end access.
   access: {
     read: true,
-    create: isAdmin,
+    create: true,
     update: isAdmin,
     delete: isAdmin,
   },
