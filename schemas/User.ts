@@ -27,7 +27,10 @@ const {
 
 const userFields = {
   fields: {
-    name: { type: Text, isRequired: true },
+    name: {
+      type: Text,
+      isRequired: true,
+    },
     email: {
       type: Text,
       isUnique: true,
