@@ -56,6 +56,11 @@ const userFields = {
       //   update: access.userIsAdmin,
       // },
     },
+    role: {
+      type: Relationship,
+      ref: "UserRole.assignedTo",
+      // TODO: add access control
+    },
   },
 };
 

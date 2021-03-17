@@ -9,6 +9,7 @@ const { MongooseAdapter: Adapter } = require("@keystonejs/adapter-mongoose");
 const initialiseData = require("./initial-data");
 const UserSchema = require("./schemas/User.ts");
 const UserImageSchema = require("./schemas/UserImage.ts");
+const UserRoleSchema = require("./schemas/UserRole.ts");
 const PostSchema = require("./schemas/Post.ts");
 require("dotenv").config();
 
@@ -63,6 +64,7 @@ keystone.createList("User", {
   },
 });
 keystone.createList("UserImage", UserImageSchema);
+keystone.createList("UserRole", UserRoleSchema);
 keystone.createList("Post", {
   fields: PostSchema.fields,
   access: {
