@@ -50,6 +50,7 @@ const userFields = {
     },
     isAdmin: {
       type: Checkbox,
+      default: false,
       // Field-level access controls
       // Here, we set more restrictive field access so a non-admin cannot make themselves admin.
       // access: {
