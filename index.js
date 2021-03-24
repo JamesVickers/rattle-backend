@@ -7,6 +7,7 @@ const { GraphQLApp } = require("@keystonejs/app-graphql");
 const { AdminUIApp } = require("@keystonejs/app-admin-ui");
 const { MongooseAdapter: Adapter } = require("@keystonejs/adapter-mongoose");
 const initialiseData = require("./initial-data");
+// const { extendGraphQlSchema } = require("./mutations/index.ts");
 const UserSchema = require("./schemas/User.ts");
 const UserImageSchema = require("./schemas/UserImage.ts");
 const UserRoleSchema = require("./schemas/UserRole.ts");
@@ -57,7 +58,8 @@ keystone.createList("User", {
   fields: UserSchema.fields,
   // access level for field type in Keystone backend, not front end access.
   access: {
-    read: true,
+    read: isAdmin,
+    // set create to true so a new user can create an account from front end app
     create: true,
     update: isAdmin,
     delete: isAdmin,
@@ -101,5 +103,6 @@ module.exports = {
       // Only admin users granted access to the Keystone dashboard here at the moment
       isAccessAllowed: isAdmin,
     }),
+    // extendGraphQlSchema,
   ],
 };
