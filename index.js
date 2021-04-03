@@ -28,10 +28,10 @@ const isAdmin = ({ authentication: { item: user } }) => {
   return !!user && !!user.isAdmin;
 };
 
-// const isLoggedIn = ({ authentication: { item: user } }) => {
-//   console.log(user);
-//   return !!user;
-// };
+const isLoggedIn = ({ authentication: { item: user } }) => {
+  // console.log(user);
+  return !!user;
+};
 
 const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
@@ -58,8 +58,9 @@ keystone.createList("User", {
   fields: UserSchema.fields,
   // access level for field type in Keystone backend, not front end access.
   access: {
-    read: isAdmin,
-    // set create to true so a new user can create an account from front end app
+    // set read access to isLoggedIn so a logged in user can query other users for search purposes in front end app
+    read: isLoggedIn,
+    // set create access to true so a new user can create an account from front end app
     create: true,
     update: isAdmin,
     delete: isAdmin,
