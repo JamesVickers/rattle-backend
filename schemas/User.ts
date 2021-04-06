@@ -27,7 +27,11 @@ const {
 
 const userFields = {
   fields: {
-    name: {
+    firstName: {
+      type: Text,
+      isRequired: true,
+    },
+    lastName: {
       type: Text,
       isRequired: true,
     },
