@@ -12,6 +12,7 @@ const UserSchema = require("./schemas/User.ts");
 const UserImageSchema = require("./schemas/UserImage.ts");
 const UserRoleSchema = require("./schemas/UserRole.ts");
 const PostSchema = require("./schemas/Post.ts");
+const ConversationSchema = require("./schemas/Conversation.ts");
 require("dotenv").config();
 
 const PROJECT_NAME = "rattle-backend";
@@ -70,15 +71,27 @@ keystone.createList("UserImage", UserImageSchema);
 keystone.createList("UserRole", UserRoleSchema);
 keystone.createList("Post", {
   fields: PostSchema.fields,
-  access: {
-    read: true,
-    create: true,
-    update: true,
-    delete: true,
-    // create: isLoggedIn,
-    // update: isLoggedIn,
-    // delete: isLoggedIn,
-  },
+  // access: {
+  //   read: true,
+  //   create: true,
+  //   update: true,
+  //   delete: true,
+  //   // create: isLoggedIn,
+  //   // update: isLoggedIn,
+  //   // delete: isLoggedIn,
+  // },
+});
+keystone.createList("Conversation", {
+  fields: ConversationSchema.fields,
+  // access: {
+  //   read: true,
+  //   create: true,
+  //   update: true,
+  //   delete: true,
+  //   // create: isLoggedIn,
+  //   // update: isLoggedIn,
+  //   // delete: isLoggedIn,
+  // },
 });
 
 const authStrategy = keystone.createAuthStrategy({
