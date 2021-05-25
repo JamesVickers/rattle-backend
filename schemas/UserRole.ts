@@ -8,10 +8,10 @@ const userRoleFields = {
       isRequired: true,
     },
     // ...permissionSchema,
-    canManagePosts: {
+    canManageConversations: {
       type: Checkbox,
       default: false,
-      label: "User can Update and delete any post",
+      label: "User can Update and delete any conversation",
     },
     canSeeOtherUsers: {
       type: Checkbox,

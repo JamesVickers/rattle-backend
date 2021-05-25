@@ -8,7 +8,7 @@
 //   // typeDefs is method name, args and what it returns
 //   typeDefs: graphql`
 //     type Mutation {
-//       addToConversation(postId: ID): ConversationItem
+//       addToConversation(conversationId: ID): ConversationItem
 //     }
 //   `,
 //   // resolvers is links to Nodejs functions that will run when typeDefs are requested via the graphQL api

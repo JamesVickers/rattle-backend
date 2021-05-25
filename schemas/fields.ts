@@ -1,9 +1,9 @@
 // const { checkbox } = require("@keystone-next/fields");
 
 // const permissionFields = {
-//   canManagePosts: checkbox({
+//   canManageConversations: checkbox({
 //     defaultValue: false,
-//     label: "User can Update and delete any post",
+//     label: "User can Update and delete any conversation",
 //   }),
 //   canSeeOtherUsers: checkbox({
 //     defaultValue: false,
